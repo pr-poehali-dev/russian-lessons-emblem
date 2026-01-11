@@ -411,7 +411,7 @@ const Index = () => {
                     <div className="flex items-start gap-3">
                       <Icon name="GraduationCap" className="text-primary mt-1 shrink-0" size={20} />
                       <p className="text-sm leading-relaxed">
-                        Студентка МГПУ им. М. Е. Евсевьева, факультет педагогического и художественного образования
+                        Студентка МГПУ им. М. Е. Евсевьева, филологический факультет
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
