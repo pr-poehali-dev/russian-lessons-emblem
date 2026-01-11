@@ -6,6 +6,8 @@ import Icon from "@/components/ui/icon";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [showAuthorForm, setShowAuthorForm] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const methodics = [
     {
@@ -426,10 +428,88 @@ const Index = () => {
                         </a>
                       </p>
                     </div>
+                    <Button 
+                      className="w-full mt-4" 
+                      onClick={() => setShowAuthorForm(!showAuthorForm)}
+                    >
+                      <Icon name="MessageCircle" className="mr-2" size={18} />
+                      Задать вопрос автору
+                    </Button>
                   </div>
                 </CardContent>
               </div>
             </Card>
+
+            {showAuthorForm && (
+              <Card className="max-w-2xl mx-auto mt-6 animate-fade-in">
+                <CardHeader>
+                  <CardTitle>Напишите автору</CardTitle>
+                  <CardDescription>
+                    Задайте вопрос о платформе, методике или образовательных материалах
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form 
+                    className="space-y-4"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      alert(`Спасибо за ваше сообщение, ${formData.name}! Мария свяжется с вами по адресу ${formData.email}`);
+                      setFormData({ name: "", email: "", message: "" });
+                      setShowAuthorForm(false);
+                    }}
+                  >
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Ваше имя</label>
+                        <input 
+                          type="text" 
+                          placeholder="Иван Иванов" 
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Email</label>
+                        <input 
+                          type="email" 
+                          placeholder="ivan@example.com" 
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Ваш вопрос</label>
+                      <textarea 
+                        placeholder="Расскажите подробнее о вашем вопросе..." 
+                        rows={4}
+                        required
+                        value={formData.message}
+                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                      ></textarea>
+                    </div>
+                    <div className="flex gap-3">
+                      <Button type="submit" className="flex-1">
+                        <Icon name="Send" className="mr-2" size={18} />
+                        Отправить
+                      </Button>
+                      <Button 
+                        type="button" 
+                        variant="outline" 
+                        onClick={() => setShowAuthorForm(false)}
+                      >
+                        Отмена
+                      </Button>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </section>
