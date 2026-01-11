@@ -389,6 +389,48 @@ const Index = () => {
               </div>
             </div>
           </div>
+
+          <div className="mt-16">
+            <Card className="max-w-3xl mx-auto overflow-hidden">
+              <div className="grid md:grid-cols-[300px,1fr] gap-0">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 flex items-center justify-center">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/93aaa84f-fc49-4f7e-a927-564a3061d04e/files/7d497e5c-96b9-4cc5-9cdd-f288e4d2349c.jpg"
+                    alt="Потапова Мария"
+                    className="rounded-full w-48 h-48 object-cover shadow-lg"
+                  />
+                </div>
+                <CardContent className="p-8 flex flex-col justify-center">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2">Потапова Мария</h3>
+                      <p className="text-muted-foreground">Автор платформы</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Icon name="GraduationCap" className="text-primary mt-1 shrink-0" size={20} />
+                      <p className="text-sm leading-relaxed">
+                        Студентка МГПУ им. М. Е. Евсевьева, факультет педагогического и художественного образования
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Icon name="BookOpen" className="text-primary mt-1 shrink-0" size={20} />
+                      <p className="text-sm leading-relaxed">
+                        Разработчик образовательных проектов в области филологии и методики преподавания русского языка
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Icon name="Mail" className="text-primary mt-1 shrink-0" size={20} />
+                      <p className="text-sm">
+                        <a href="mailto:potapova.maria@edu.ru" className="text-primary hover:underline">
+                          potapova.maria@edu.ru
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </div>
+            </Card>
+          </div>
         </div>
       </section>
 
