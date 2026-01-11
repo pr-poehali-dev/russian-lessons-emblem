@@ -1,8 +1,92 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const methodics = [
+    {
+      id: 1,
+      title: "Орфография: безударные гласные",
+      description: "Комплексный набор упражнений для отработки правописания безударных гласных в корне слова",
+      author: "Иванова М.П.",
+      grade: "5-6 класс",
+      category: "grammar",
+      format: "PDF",
+      pages: 24,
+      color: "bg-green-50"
+    },
+    {
+      id: 2,
+      title: "Сочинение-рассуждение: структура и аргументация",
+      description: "Методические рекомендации по подготовке к написанию сочинений формата ОГЭ и ЕГЭ",
+      author: "Петрова С.А.",
+      grade: "9-11 класс",
+      category: "writing",
+      format: "DOCX",
+      pages: 18,
+      color: "bg-yellow-50"
+    },
+    {
+      id: 3,
+      title: "Анализ поэтического текста",
+      description: "Пошаговая методика анализа стихотворений: размер, рифма, тропы, образная система",
+      author: "Соколов В.И.",
+      grade: "8-11 класс",
+      category: "literature",
+      format: "PDF",
+      pages: 32,
+      color: "bg-purple-50"
+    },
+    {
+      id: 4,
+      title: "Пунктуация в сложных предложениях",
+      description: "Таблицы, схемы и практические задания по всем типам сложных предложений",
+      author: "Новикова Е.Д.",
+      grade: "7-9 класс",
+      category: "grammar",
+      format: "PDF",
+      pages: 28,
+      color: "bg-green-50"
+    },
+    {
+      id: 5,
+      title: "Подготовка к итоговому сочинению",
+      description: "Методика работы с аргументами, структурирование текста, типичные ошибки",
+      author: "Кузнецова Л.М.",
+      grade: "11 класс",
+      category: "writing",
+      format: "PPTX",
+      pages: 45,
+      color: "bg-yellow-50"
+    },
+    {
+      id: 6,
+      title: "Древнерусская литература: контексты и интерпретации",
+      description: "Методические материалы для изучения текстов древнерусской словесности",
+      author: "Михайлов А.В.",
+      grade: "9-10 класс",
+      category: "literature",
+      format: "PDF",
+      pages: 36,
+      color: "bg-purple-50"
+    }
+  ];
+
+  const categories = [
+    { id: "all", label: "Все материалы", icon: "Layers" },
+    { id: "grammar", label: "Грамматика", icon: "BookText" },
+    { id: "writing", label: "Письмо и сочинения", icon: "PenTool" },
+    { id: "literature", label: "Литература", icon: "BookOpen" }
+  ];
+
+  const filteredMethodics = selectedCategory === "all" 
+    ? methodics 
+    : methodics.filter(m => m.category === selectedCategory);
+
   return (
     <div className="min-h-screen">
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
@@ -19,6 +103,7 @@ const Index = () => {
             <div className="hidden md:flex items-center gap-8">
               <a href="#home" className="text-foreground/80 hover:text-primary transition-colors">Главная</a>
               <a href="#courses" className="text-foreground/80 hover:text-primary transition-colors">Курсы</a>
+              <a href="#methodics" className="text-foreground/80 hover:text-primary transition-colors">Методички</a>
               <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">О платформе</a>
               <a href="#contacts" className="text-foreground/80 hover:text-primary transition-colors">Контакты</a>
             </div>
@@ -196,6 +281,87 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="methodics" className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Методички для учителей</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Готовые учебные материалы, разработанные опытными педагогами
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map((cat) => (
+              <Button
+                key={cat.id}
+                variant={selectedCategory === cat.id ? "default" : "outline"}
+                onClick={() => setSelectedCategory(cat.id)}
+                className="gap-2"
+              >
+                <Icon name={cat.icon} size={18} />
+                {cat.label}
+              </Button>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredMethodics.map((method) => (
+              <Card key={method.id} className="hover:shadow-xl transition-all hover:scale-[1.02] group">
+                <CardHeader>
+                  <div className={`aspect-video ${method.color} rounded-lg mb-4 flex items-center justify-center relative overflow-hidden`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5"></div>
+                    <Icon 
+                      name={method.category === "grammar" ? "BookText" : method.category === "writing" ? "PenTool" : "BookOpen"} 
+                      className="text-primary relative z-10 group-hover:scale-110 transition-transform" 
+                      size={64} 
+                    />
+                  </div>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <CardTitle className="text-lg">{method.title}</CardTitle>
+                    <Badge variant="secondary" className="shrink-0">{method.format}</Badge>
+                  </div>
+                  <CardDescription className="line-clamp-2">
+                    {method.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3 mb-4">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Icon name="User" size={14} />
+                      <span>{method.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Icon name="GraduationCap" size={14} />
+                      <span>{method.grade}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Icon name="FileText" size={14} />
+                      <span>{method.pages} страниц</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button className="flex-1" size="sm">
+                      <Icon name="Download" className="mr-2" size={16} />
+                      Скачать
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Icon name="Eye" size={16} />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {filteredMethodics.length === 0 && (
+            <div className="text-center py-12">
+              <Icon name="FolderOpen" className="mx-auto text-muted-foreground mb-4" size={64} />
+              <p className="text-lg text-muted-foreground">Материалов в этой категории пока нет</p>
+            </div>
+          )}
+        </div>
+      </section>
+
       <section id="about" className="py-20 px-6 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center space-y-6">
@@ -328,6 +494,7 @@ const Index = () => {
               <ul className="space-y-2 text-sm">
                 <li><a href="#home" className="text-background/70 hover:text-background transition-colors">Главная</a></li>
                 <li><a href="#courses" className="text-background/70 hover:text-background transition-colors">Курсы</a></li>
+                <li><a href="#methodics" className="text-background/70 hover:text-background transition-colors">Методички</a></li>
                 <li><a href="#about" className="text-background/70 hover:text-background transition-colors">О платформе</a></li>
               </ul>
             </div>
