@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showAuthorForm, setShowAuthorForm] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -223,7 +225,7 @@ const Index = () => {
                     <span>Уровень: Начальный</span>
                   </div>
                 </div>
-                <Button className="w-full">Подробнее</Button>
+                <Button className="w-full" onClick={() => navigate('/course/1')}>Открыть курс</Button>
               </CardContent>
             </Card>
 
@@ -251,7 +253,7 @@ const Index = () => {
                     <span>Уровень: Средний</span>
                   </div>
                 </div>
-                <Button className="w-full">Подробнее</Button>
+                <Button className="w-full" onClick={() => navigate('/course/2')}>Открыть курс</Button>
               </CardContent>
             </Card>
 
@@ -276,7 +278,7 @@ const Index = () => {
                     <span>Уровень: Продвинутый</span>
                   </div>
                 </div>
-                <Button className="w-full">Подробнее</Button>
+                <Button className="w-full" onClick={() => navigate('/course/3')}>Открыть курс</Button>
               </CardContent>
             </Card>
           </div>
