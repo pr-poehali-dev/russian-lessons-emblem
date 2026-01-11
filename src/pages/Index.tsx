@@ -367,7 +367,7 @@ const Index = () => {
           <div className="text-center space-y-6">
             <h2 className="text-4xl font-bold">О платформе</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              РусЯзык — современная образовательная платформа, созданная командой опытных преподавателей и методистов. 
+              РусЯзык — современная образовательная платформа, созданная студенткой МГПУ им. М. Е. Евсевьева Потаповой Марией. 
               Мы используем передовые технологии и проверенные методики для эффективного обучения русскому языку.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
